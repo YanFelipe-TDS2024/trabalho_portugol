@@ -1,22 +1,82 @@
 programa
-{
-	
+{	
 	// Bibliotecas
 	inclua biblioteca Texto
 	inclua biblioteca Util
 
+	// Variáveis
+	
+	cadeia ImagemFaca[] = {                                        
+		"                                     :",     
+		"                                  .:=#",     
+		"                                :==++#",     
+		"                             .:-:=***:",     
+		"                           .-:--*#**:",      
+		"                         :-..=+#*+#.",       
+		"                       .=::=+#**+=.",        
+		"                     .-.:-*#**+:",           
+		"                   .-.:-+#***:",             
+		"                 .--=++#***-",               
+		"           .:= :-==#%%***-",                 
+	  	"           +#+=*+*#%%**-%%#",                   
+	  	"           -*#++*##%*--++",                     
+	  	"           .++*=*##*",                       
+	  	"         .=*++*#%",                     
+	  	"        =****%#",                      
+	  	"    --++**#%%=",                             
+	  	"   -=**##%+:",                               
+	  	"   -*%#%%+",                                 
+	  	"   :--==:"
+	}                                  
+	
+
 	// Funções
+	funcao dialogos(){
+		inteiro Resposta = 0
+		
+		typewriter("Testando ", verdadeiro)
+		typewriter("Testando 123456789", verdadeiro)
+
+		Resposta = pergunta(
+			"Escolha um personagem!",  // Pergunta
+			
+			"Personagem A", // Alternativa 1
+			"Personagem B", // Alternativa 2
+			"Personagem C", // Alternativa 3 (OPCIONAL)
+			"Personagem D"  // Alternativa 4 (OPCIONAL)
+		)
+
+		typewriter("Você encontrou uma faca!\n\n", falso)
+		para(inteiro i = 0; i < Util.numero_elementos(ImagemFaca); i++){
+			escreva(ImagemFaca[i], "\n")
+		}
+		esperarEnter()
+
+	}
+	
+	// Inicialização
+	funcao inicio()
+	{
+		dialogos()
+	}
+
+	// ENTER PARA CONTINUAR
+	funcao esperarEnter(){
+		cadeia Esperando
+		escreva("\n\n[ENTER PARA CONTINUAR]\n\n")
+		leia(Esperando)	
+	}
 
 	// ANIMAÇÃO DO TEXTO
-	funcao typewriter(cadeia TextoParaType, inteiro Velocidade){
+	funcao typewriter(cadeia TextoParaType, logico Esperar){
 		limpa()
 		para(inteiro i = 0; i < Texto.numero_caracteres(TextoParaType); i++){
 			escreva(Texto.extrair_subtexto(TextoParaType, i, i+1))
-			Util.aguarde(Velocidade)
+			Util.aguarde(25)
 		}
-		cadeia Esperando
-		escreva("\n\n[ENTER PARA CONTINUAR]")
-		leia(Esperando)
+		se(Esperar){
+			esperarEnter()
+		}
 	}
 
 	// FUNÇÃO QUE RETORNA PERGUNTA ESCOLHIDA
@@ -31,8 +91,7 @@ programa
 		}
 		
 		enquanto(Escolha < 1 ou Escolha > Maximo){
-			limpa()
-			escreva(Pergunta, "\n\n")
+			typewriter(Pergunta + "\n\n", falso)
 			escreva("[1] ", A, "\n")	
 			escreva("[2] ", B, "\n")
 
@@ -49,35 +108,15 @@ programa
 		limpa()
 		retorne Escolha
 	}
-
-	funcao dialogos(){
-		typewriter("Testando typewriter, console do Portugol TESTEE", 25)
-		typewriter("Testando 123456789", 100)
-
-		inteiro Resposta = pergunta(
-			"Gostaria de continuar?",
-			
-			"Alternativa A",
-			"Alternativa B",
-			"Alternativa C",
-			"Alternativa D"
-		)
-	}
-	
-	// Inicialização
-	funcao inicio()
-	{
-		dialogos()
-	}
 }
 /* $$$ Portugol Studio $$$ 
  * 
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 350; 
+ * @POSICAO-CURSOR = 885; 
  * @PONTOS-DE-PARADA = ;
- * @SIMBOLOS-INSPECIONADOS = {Maximo, 26, 10, 6};
+ * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
  * @FILTRO-ARVORE-TIPOS-DE-SIMBOLO = variavel, vetor, matriz, funcao;
  */
