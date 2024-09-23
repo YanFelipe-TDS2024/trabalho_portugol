@@ -5,7 +5,6 @@ programa
 	inclua biblioteca Util
 
 	// Variáveis
-	
 	cadeia ImagemFaca[] = {                                        
 		"                                     :",     
 		"                                  .:=#",     
@@ -46,12 +45,28 @@ programa
 			"Personagem D"  // Alternativa 4 (OPCIONAL)
 		)
 
-		typewriter("Você encontrou uma faca!\n\n", falso)
-		para(inteiro i = 0; i < Util.numero_elementos(ImagemFaca); i++){
-			escreva(ImagemFaca[i], "\n")
+		se(Resposta == 1 ou Resposta == 2){
+			typewriter("Você escolheu o A ou B!", verdadeiro)
+		}senao{
+			typewriter("Você escolheu o C ou D!", verdadeiro)
 		}
-		esperarEnter()
 
+		carregarImagem("Você encontrou uma faca!", ImagemFaca)
+
+		Resposta = pergunta(
+			"A ou B?",  // Pergunta
+			
+			"Prefiro A", // Alternativa 1
+			"Prefiro B", // Alternativa 2
+			"", // Alternativa 3 (OPCIONAL)
+			""  // Alternativa 4 (OPCIONAL)
+		)
+
+		se(Resposta == 1){
+			typewriter("Você escolheu A!", verdadeiro)
+		}senao{
+			typewriter("Você escolheu B!", verdadeiro)
+		}
 	}
 	
 	// Inicialização
@@ -60,6 +75,16 @@ programa
 		dialogos()
 	}
 
+	// FUNÇÃO QUE CARREGA IMAGENS
+	funcao carregarImagem(cadeia TextoPorCima, cadeia Imagem[]){
+		limpa()
+		typewriter(TextoPorCima + "\n\n", falso)
+		para(inteiro i = 0; i < Util.numero_elementos(Imagem); i++){
+			escreva(Imagem[i], "\n")
+		}
+		esperarEnter()
+	}
+	
 	// ENTER PARA CONTINUAR
 	funcao esperarEnter(){
 		cadeia Esperando
@@ -72,7 +97,7 @@ programa
 		limpa()
 		para(inteiro i = 0; i < Texto.numero_caracteres(TextoParaType); i++){
 			escreva(Texto.extrair_subtexto(TextoParaType, i, i+1))
-			Util.aguarde(25)
+			Util.aguarde(45)
 		}
 		se(Esperar){
 			esperarEnter()
@@ -114,7 +139,7 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 885; 
+ * @POSICAO-CURSOR = 2137; 
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
